@@ -83,7 +83,7 @@ class VirusCheckerCLI:
             result_text = args[0]
         print(result_text)
 
-if __name__ == "__main__":
+def main():
     font = pyfiglet.Figlet(font='slant')
     print(colored(font.renderText('         Web'),'red'))
     print(colored(font.renderText('Enumerator'),'red'))
@@ -92,3 +92,6 @@ if __name__ == "__main__":
     print("[+] Github: https://github.com/Spandan-Bhattarai\n")
 
     VirusCheckerCLI()
+
+if __name__ == "__main__":
+    main()

@@ -5,6 +5,11 @@ import os
 import requests
 
 class VirusCheckerApp:
+    current_dir = os.path.dirname(__file__)
+    SHA256_HASHES_pack1 = os.path.join(current_dir, 'hashes', 'SHA256-Hashes_pack1.txt')
+    SHA256_HASHES_pack2 = os.path.join(current_dir, 'hashes', 'SHA256-Hashes_pack2.txt')
+    SHA256_HASHES_pack3 = os.path.join(current_dir, 'hashes', 'SHA256-Hashes_pack3.txt')
+
     def __init__(self, master):
         self.master = master
         master.title("Virus Checker")
@@ -92,7 +97,7 @@ class VirusCheckerApp:
         file_name = os.path.basename(file_path)
         file_hash = self.calculate_file_hash(file_path)
         virus_detected = False
-        for hash_list_file in [SHA256_HASHES_pack1, SHA256_HASHES_pack2, SHA256_HASHES_pack3]:
+        for hash_list_file in [self.SHA256_HASHES_pack1, self.SHA256_HASHES_pack2, self.SHA256_HASHES_pack3]:
             with open(hash_list_file, 'r') as f:
                 hash_list = f.read().split(';')
 
@@ -187,8 +192,4 @@ def main():
     root.mainloop()
 
 if __name__ == "__main__":
-    current_dir = os.path.dirname(__file__)
-    SHA256_HASHES_pack1 = os.path.join(current_dir, 'hashes', 'SHA256-Hashes_pack1.txt')
-    SHA256_HASHES_pack2 = os.path.join(current_dir, 'hashes', 'SHA256-Hashes_pack2.txt')
-    SHA256_HASHES_pack3 = os.path.join(current_dir, 'hashes', 'SHA256-Hashes_pack3.txt')
     main()
