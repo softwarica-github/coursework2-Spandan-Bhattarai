@@ -2,6 +2,8 @@ import argparse
 import hashlib
 import os
 import requests
+import pyfiglet
+from termcolor import colored
 
 class VirusCheckerCLI:
     def __init__(self):
@@ -82,4 +84,11 @@ class VirusCheckerCLI:
         print(result_text)
 
 if __name__ == "__main__":
+    font = pyfiglet.Figlet(font='slant')
+    print(colored(font.renderText('         Web'),'red'))
+    print(colored(font.renderText('Enumerator'),'red'))
+
+    print(" "*38,"BY Spandan Bhattarai",)
+    print("[+] Github: https://github.com/Spandan-Bhattarai\n")
+
     VirusCheckerCLI()
