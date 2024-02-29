@@ -36,7 +36,7 @@ class VirusCheckerCLI:
         file_hash = self.calculate_file_hash()
         virus_detected = False
 
-        if file_hash in self.get_fake_hash_list():
+        if file_hash in self.get_hash_list():
             virus_detected = True
 
         if virus_detected:
@@ -47,8 +47,18 @@ class VirusCheckerCLI:
         if self.scan_virustotal:
             self.search_virustotal(file_hash)
 
-    def get_fake_hash_list(self):
-        return ["fake_hash_1", "fake_hash_2", "fake_hash_3"]
+    def get_hash_list(self):
+        hash_files = [
+            "hashes/SHA256-Hashes_pack1.txt",
+            "hashes/SHA256-Hashes_pack2.txt",
+            "hashes/SHA256-Hashes_pack3.txt"
+        ]
+        hash_list = set()
+        for hash_file in hash_files:
+            with open(hash_file, 'r') as f:
+                hashes = f.read().split(';')
+                hash_list.update(hashes)
+        return hash_list
 
     def search_virustotal(self, file_hash):
         url = f'https://www.virustotal.com/vtapi/v2/file/report'
